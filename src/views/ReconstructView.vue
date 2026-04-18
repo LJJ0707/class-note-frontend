@@ -472,7 +472,7 @@ onMounted(() => {
 
 .reconstruct-card {
   margin-bottom: 20px;
-  background: url('~@static/教育智能体界面优化方案.png') no-repeat center center;
+  background: url('/static/教育智能体界面优化方案.png') no-repeat center center;
   background-size: cover;
   position: relative;
 }

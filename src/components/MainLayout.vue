@@ -261,7 +261,7 @@ const handleLogout = () => {
 .layout-main {
   display: flex;
   flex-direction: column;
-  background: url('~@static/教育智能体界面优化方案.png') no-repeat center center;
+  background: url('/static/教育智能体界面优化方案.png') no-repeat center center;
   background-size: cover;
 }
 
