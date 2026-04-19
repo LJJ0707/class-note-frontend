@@ -194,9 +194,12 @@ request.interceptors.response.use(
       handleUnauthorized(res.message)
       return Promise.reject(new Error(res.message || '登录已过期'))
     } else {
-      // 业务错误 - 显示带 TraceID 的错误提示
-      const traceId = response.headers['x-trace-id'] || response.config._traceId || ''
-      showErrorNotification(res.message || '请求失败', traceId)
+      // 业务错误 - 对于登录接口的错误，不显示全局通知，由调用方处理
+      const isLoginRequest = response.config.url && response.config.url.includes('/user/login')
+      if (!isLoginRequest) {
+        const traceId = response.headers['x-trace-id'] || response.config._traceId || ''
+        showErrorNotification(res.message || '请求失败', traceId)
+      }
       return Promise.reject(new Error(res.message || '请求失败'))
     }
   },

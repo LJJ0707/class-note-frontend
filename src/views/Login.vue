@@ -101,7 +101,17 @@ const handleLogin = async () => {
     router.push(redirect)
   } catch (error) {
     if (error.name !== 'ValidationError') {
-      ElMessage.error(error.message || '登录失败，请检查用户名和密码')
+      // 根据错误消息显示不同的提示
+      const message = error.message || '登录失败'
+      if (message.includes('用户名不存在') || message.includes('404')) {
+        ElMessage.error('用户名不存在，请先注册')
+      } else if (message.includes('密码错误') || message.includes('401')) {
+        ElMessage.error('密码错误')
+      } else if (message.includes('已被禁用') || message.includes('403')) {
+        ElMessage.error('该账号已被禁用，请联系管理员')
+      } else {
+        ElMessage.error(message)
+      }
     }
   } finally {
     loading.value = false
