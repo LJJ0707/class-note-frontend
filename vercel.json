@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://class-note-env-247982-5-1422993772.sh.run.tcloudbase.com/api/:path*"
+    }
+  ]
+}
